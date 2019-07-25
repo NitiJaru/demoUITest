@@ -6,21 +6,22 @@ namespace SimpleUITest
 {
     public class AppInitializer
     {
+        private const string AndroidAPK = @"C:\Users\earnd\source\repos\demoUITest\demoUITest\demoUITest.Android\bin\Debug\com.companyname.demoUITest.apk";
+        private const string iOSApp = @"/path/to/iosapp.app";
+
         public static IApp StartApp(Platform platform)
         {
             if (platform == Platform.Android)
             {
-                //return ConfigureApp.Android.StartApp();
-
                 return ConfigureApp.Android
-                                   //.ApkFile("../../../demoUITest/demoUITest/demoUITest.Android/bin/Debug/com.companyname.demoUITest.apk")
-                                   //.InstalledApp("com.companyname.demoUITest")
-                                   .ApkFile(@"C:\Users\earnd\source\repos\demoUITest\demoUITest\demoUITest.Android\bin\Debug\com.companyname.demoUITest.apk")
-                                   //.DeviceSerial("21e2d61e")
+                                   .ApkFile(AndroidAPK)
                                    .StartApp();
             }
 
-            return ConfigureApp.iOS.StartApp();
+            return ConfigureApp.iOS
+                               .InstalledApp("com.companyname.demoUITest")
+                               //.AppBundle(iOSApp)
+                               .StartApp(); ;
         }
     }
 }
